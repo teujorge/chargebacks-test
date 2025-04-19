@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { Video } from "../api/videos/data";
 import { ScrollFade } from "@/components/scroll-fade";
 import { Removable } from "@/components/removable";
+import { fetcher } from "@/lib/fetcher";
 
 export const dynamic = "force-dynamic";
 
@@ -31,26 +32,14 @@ export default function HomePage() {
   );
 }
 
-async function getMissedVideos() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/videos/missed`);
-  if (!res.ok) throw new Error("Failed to fetch missed videos");
-  return (await res.json()) as Video[];
-}
-
 async function MissedVideos() {
-  const videos = await getMissedVideos();
+  const videos = await fetcher<Video[]>("/videos/missed");
   return videos.map((video) => (
     <VideoCard key={video.id} video={video} className="h-fit min-w-80" />
   ));
 }
 
-async function getTrendingVideos() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/videos/trending`);
-  if (!res.ok) throw new Error("Failed to fetch trending videos");
-  return (await res.json()) as Video[];
-}
-
 async function TrendingVideos() {
-  const videos = await getTrendingVideos();
+  const videos = await fetcher<Video[]>("/videos/trending");
   return videos.map((video) => <VideoCard key={video.id} video={video} />);
 }

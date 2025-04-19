@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { Bell, Settings } from "lucide-react";
 import { SideNav } from "./side-nav";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -21,13 +21,16 @@ export function TopBar({ sidebarNavItems, toggleCollapsed }: TopBarProps) {
         <div className="flex items-center">
           {/* Mobile Menu Button */}
           <Sheet>
-            <SheetTrigger asChild className="md:hidden">
-              <LogoMenu />
-            </SheetTrigger>
-            <SheetContent side="left" className="pr-0">
-              <LogoMenu showMenu={false} className="mb-4" />
+            <LogoMenu className="md:hidden" type="sheetTrigger" />
+
+            <SheetContent side="left" className="w-fit gap-0">
+              <SheetTitle className="flex h-14 items-center border-b p-4">
+                <span className="sr-only">Menu</span>
+                <LogoMenu type="sheetClose" />
+              </SheetTitle>
+
               <SideNav
-                className="px-2"
+                className="overflow-y-auto px-2 pt-0"
                 items={sidebarNavItems}
                 isCollapsed={false}
               />
@@ -36,7 +39,7 @@ export function TopBar({ sidebarNavItems, toggleCollapsed }: TopBarProps) {
 
           {/* Desktop Collapse Button */}
           <div className="hidden md:flex">
-            <LogoMenu onMenuClick={toggleCollapsed} />
+            <LogoMenu type="button" onMenuClick={toggleCollapsed} />
           </div>
         </div>
 

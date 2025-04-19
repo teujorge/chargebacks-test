@@ -48,7 +48,7 @@ export function TopBar({ sidebarNavItems, toggleCollapsed }: TopBarProps) {
         </div>
 
         {/* Utility Buttons & Profile */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center justify-end space-x-2 not-md:flex-1">
           {/* Mobile: 2 utility buttons */}
           <div className="flex items-center space-x-1 md:hidden">
             <Button variant="ghost" size="icon" className="h-9 w-9">

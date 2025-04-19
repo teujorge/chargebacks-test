@@ -1,9 +1,9 @@
 import { VideoCard, VideoCardSkeletons } from "@/components/video-card";
 import { Suspense } from "react";
-import { Video } from "../api/videos/data";
+import { getFakeVideos } from "./data";
 import { ScrollFade } from "@/components/scroll-fade";
 import { Removable } from "@/components/removable";
-import { fetcher } from "@/lib/fetcher";
+import { sleep } from "@/lib/sleep";
 
 export const dynamic = "force-dynamic";
 
@@ -33,13 +33,15 @@ export default function HomePage() {
 }
 
 async function MissedVideos() {
-  const videos = await fetcher<Video[]>("/videos/missed");
+  await sleep();
+  const videos = getFakeVideos();
   return videos.map((video) => (
     <VideoCard key={video.id} video={video} className="h-fit min-w-80" />
   ));
 }
 
 async function TrendingVideos() {
-  const videos = await fetcher<Video[]>("/videos/trending");
+  await sleep();
+  const videos = getFakeVideos();
   return videos.map((video) => <VideoCard key={video.id} video={video} />);
 }

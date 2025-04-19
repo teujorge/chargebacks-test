@@ -1,4 +1,4 @@
-import { Video } from "@/app/api/videos/data";
+import { Video } from "@/app/(home)/data";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { uploadDateToString, viewsToString } from "@/lib/toString";

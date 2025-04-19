@@ -4,6 +4,8 @@ import { Video } from "../api/videos/data";
 import { ScrollFade } from "@/components/scroll-fade";
 import { Removable } from "@/components/removable";
 
+export const dynamic = "force-dynamic";
+
 export default function HomePage() {
   return (
     <div className="space-y-8">

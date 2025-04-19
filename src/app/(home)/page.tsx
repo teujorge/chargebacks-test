@@ -35,7 +35,7 @@ async function getMissedVideos() {
   return (await res.json()) as Video[];
 }
 
-export async function MissedVideos() {
+async function MissedVideos() {
   const videos = await getMissedVideos();
   return videos.map((video) => (
     <VideoCard key={video.id} video={video} className="h-fit min-w-80" />
@@ -48,7 +48,7 @@ async function getTrendingVideos() {
   return (await res.json()) as Video[];
 }
 
-export async function TrendingVideos() {
+async function TrendingVideos() {
   const videos = await getTrendingVideos();
   return videos.map((video) => <VideoCard key={video.id} video={video} />);
 }

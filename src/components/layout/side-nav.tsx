@@ -50,6 +50,9 @@ function NavItem({
 }) {
   const pathname = usePathname();
   const isActive = pathname === item.href;
+  const someSubActive = item.subItems?.some((subItem) =>
+    pathname.startsWith(subItem.href),
+  );
 
   const NavItem = (
     <AccordionItem value={item.href} style={{ border: 0 }}>
@@ -61,17 +64,18 @@ function NavItem({
           className={cn(
             "group flex-1 justify-start !px-3",
             isActive && "pointer-events-none",
+            someSubActive && "bg-accent",
           )}
         >
           <Link href={item.href}>
             <span
               className={cn(
                 "material-symbols-rounded group-hover:[--font-FILL:1]",
-                isActive && "[--font-FILL:1]",
+                (isActive || someSubActive) && "[--font-FILL:1]",
                 isSmall ? "mr-0" : "mr-2",
               )}
               style={
-                isActive
+                isActive || someSubActive
                   ? {
                       background: "linear-gradient(to right, #FF0033, #F50057)",
                       WebkitBackgroundClip: "text",
@@ -101,22 +105,29 @@ function NavItem({
       </div>
 
       <AccordionContent className="flex max-w-48 flex-col overflow-hidden pt-2 pl-6">
-        {item.subItems?.map((subItem) => (
-          <Link
-            className="hover:bg-accent/50 flex flex-1 flex-row items-center gap-2 rounded-md p-2"
-            key={subItem.href}
-            href={subItem.href}
-          >
-            <Image
-              src={subItem.img}
-              alt={subItem.title}
-              width={16}
-              height={16}
-              className="h-4 w-4 rounded-full"
-            />
-            <span className="line-clamp-1 text-sm">{subItem.title}</span>
-          </Link>
-        ))}
+        {item.subItems?.map((subItem) => {
+          const isSubActive = pathname === subItem.href;
+
+          return (
+            <Link
+              className={cn(
+                "hover:bg-accent/50 flex flex-1 flex-row items-center gap-2 rounded-md p-2",
+                isSubActive && "bg-primary/14 pointer-events-none",
+              )}
+              key={subItem.href}
+              href={subItem.href}
+            >
+              <Image
+                src={subItem.img}
+                alt={subItem.title}
+                width={16}
+                height={16}
+                className="h-4 w-4 rounded-full"
+              />
+              <span className="line-clamp-1 text-sm">{subItem.title}</span>
+            </Link>
+          );
+        })}
       </AccordionContent>
     </AccordionItem>
   );

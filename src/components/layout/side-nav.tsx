@@ -30,7 +30,7 @@ export function SideNav(props: React.HTMLAttributes<HTMLElement>) {
       )}
       {...props}
     >
-      <Accordion type="single" collapsible>
+      <Accordion type="multiple">
         <div className="flex flex-col gap-2 p-2">
           {sidebarNavItems.map((item) => (
             <NavItem key={item.href} item={item} isSmall={isSideNavCollapsed} />

@@ -3,7 +3,6 @@
 import { cn } from "@/lib/utils";
 import { useState, useEffect, useRef } from "react";
 import { Button } from "./ui/button";
-import { ArrowLeftIcon } from "lucide-react";
 
 interface FadeState {
   show: boolean;
@@ -187,15 +186,17 @@ function Fade({
           className="hover:border-primary/50 mb-10 h-12 w-12 cursor-pointer rounded-full border-transparent"
           onClick={onClickToScroll}
         >
-          <ArrowLeftIcon
+          <span
             className={cn(
-              "h-7 w-7",
+              "material-symbols-rounded",
               position === "left" && "rotate-0",
               position === "right" && "rotate-180",
               position === "top" && "-rotate-90",
               position === "bottom" && "rotate-90",
             )}
-          />
+          >
+            chevron_left
+          </span>
         </Button>
       )}
     </div>

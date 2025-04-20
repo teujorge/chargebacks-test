@@ -15,31 +15,25 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
+import { useHeader } from "@/providers/HeaderProvider";
+import { sidebarNavItems } from "./header";
 
-interface SideNavProps extends React.HTMLAttributes<HTMLElement> {
-  items: SidebarNavItem[];
-  isCollapsed: boolean;
-}
+export function SideNav(props: React.HTMLAttributes<HTMLElement>) {
+  const { isSideNavCollapsed } = useHeader();
 
-export function SideNav({
-  className,
-  items,
-  isCollapsed,
-  ...props
-}: SideNavProps) {
   return (
     <nav
       className={cn(
         "flex flex-col gap-2",
-        isCollapsed ? "items-center" : "items-start",
-        className,
+        isSideNavCollapsed ? "items-center" : "items-start",
+        props.className,
       )}
       {...props}
     >
       <Accordion type="single" collapsible>
         <div className="flex flex-col gap-2 p-2">
-          {items.map((item) => (
-            <NavItem key={item.href} item={item} isSmall={isCollapsed} />
+          {sidebarNavItems.map((item) => (
+            <NavItem key={item.href} item={item} isSmall={isSideNavCollapsed} />
           ))}
         </div>
       </Accordion>
@@ -65,22 +59,35 @@ function NavItem({
           asChild
           variant={isActive ? "default" : "ghost"}
           className={cn(
-            "flex-1 justify-start",
+            "group flex-1 justify-start !px-3",
             isActive && "pointer-events-none",
           )}
         >
           <Link href={item.href}>
-            {item.icon && (
-              <span
-                className={cn(
-                  "text-foreground mr-2",
-                  isSmall ? "mr-0" : "mr-2",
-                )}
-              >
-                {item.icon}
+            <span
+              className={cn(
+                "material-symbols-rounded group-hover:[--font-FILL:1]",
+                isActive && "[--font-FILL:1]",
+                isSmall ? "mr-0" : "mr-2",
+              )}
+              style={
+                isActive
+                  ? {
+                      background: "linear-gradient(to right, #FF0033, #F50057)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }
+                  : undefined
+              }
+            >
+              {item.icon}
+            </span>
+
+            {!isSmall && (
+              <span className="text-foreground text-lg font-medium">
+                {item.title}
               </span>
             )}
-            {!isSmall && <span className="text-foreground">{item.title}</span>}
           </Link>
         </Button>
 
@@ -88,7 +95,7 @@ function NavItem({
           <>
             <div className="bg-secondary h-6 w-0.5 rounded-full" />
 
-            <AccordionTrigger className="hover:bg-accent/50 flex cursor-pointer items-center justify-center p-2.5" />
+            <AccordionTrigger className="hover:bg-accent flex cursor-pointer items-center justify-center p-1.5" />
           </>
         )}
       </div>

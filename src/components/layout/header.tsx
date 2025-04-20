@@ -1,20 +1,8 @@
 "use client";
 
-import {
-  Home,
-  History,
-  ThumbsUp,
-  ListMusic,
-  GalleryVerticalEnd,
-  Library,
-  Clock4,
-  Compass,
-  TvMinimalPlay,
-  Clapperboard,
-} from "lucide-react";
 import { TopBar } from "./top-bar";
 import { SideNav } from "./side-nav";
-import { useMemo, useState } from "react";
+import { HeaderProvider } from "@/providers/HeaderProvider";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -23,7 +11,7 @@ interface HeaderProps {
 export interface SidebarNavItem {
   href: string;
   title: string;
-  icon: React.ReactNode;
+  icon: string;
   subItems?: SidebarSubNavItem[];
   divider?: boolean;
 }
@@ -34,57 +22,57 @@ export interface SidebarSubNavItem {
   img: string;
 }
 
-const getSidebarNavItems = (): SidebarNavItem[] => [
+export const sidebarNavItems: SidebarNavItem[] = [
   {
     title: "Home",
     href: "/",
-    icon: <Home />,
+    icon: "home",
   },
   {
     title: "Explore",
     href: "/explore",
-    icon: <Compass />,
+    icon: "explore",
   },
   {
     title: "Shorts",
     href: "/shorts",
-    icon: <Clapperboard />,
+    icon: "movie",
   },
   {
     title: "TV Mode",
     href: "/tv",
-    icon: <TvMinimalPlay />,
+    icon: "tv_remote",
     divider: true,
   },
   {
     title: "History",
     href: "/history",
-    icon: <History />,
+    icon: "overview",
   },
   {
     title: "Watch Later",
     href: "/watch-later",
-    icon: <Clock4 />,
+    icon: "schedule",
   },
   {
     title: "Liked Videos",
     href: "/liked-videos",
-    icon: <ThumbsUp />,
+    icon: "thumb_up",
   },
   {
     title: "Playlists",
     href: "/playlists",
-    icon: <ListMusic />,
+    icon: "video_library",
     subItems: [
       {
         title: "My Playlists",
         href: "/playlists/my-playlists",
-        img: `https://picsum.photos/seed/${Math.random()}/50`,
+        img: "https://picsum.photos/seed/my-playlists/50",
       },
       {
         title: "Liked Playlists",
         href: "/playlists/liked-playlists",
-        img: `https://picsum.photos/seed/${Math.random()}/50`,
+        img: "https://picsum.photos/seed/liked-playlists/50",
       },
     ],
     divider: true,
@@ -92,54 +80,49 @@ const getSidebarNavItems = (): SidebarNavItem[] => [
   {
     title: "Collections",
     href: "/collections",
-    icon: <Library />,
+    icon: "grid_view",
     subItems: [
       {
         title: "My Collections",
         href: "/collections/my-collections",
-        img: `https://picsum.photos/seed/${Math.random()}/50`,
+        img: "https://picsum.photos/seed/my-collections/50",
       },
     ],
   },
   {
     title: "Subscriptions",
     href: "/subscriptions",
-    icon: <GalleryVerticalEnd />,
+    icon: "subscriptions",
     subItems: [
       {
         title: "Chargebacks911",
         href: "/subscriptions/chargebacks911",
-        img: `https://picsum.photos/seed/${Math.random()}/50`,
+        img: "https://picsum.photos/seed/chargebacks911/50",
       },
       {
         title: "f911",
         href: "/subscriptions/f911",
-        img: `https://picsum.photos/seed/${Math.random()}/50`,
+        img: "https://picsum.photos/seed/f911/50",
       },
     ],
   },
 ];
 
 export function Header({ children }: HeaderProps) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
-  const sidebarNavItems = useMemo(() => getSidebarNavItems(), []);
-
   return (
-    <div className="relative flex min-h-svh flex-col">
-      <TopBar
-        sidebarNavItems={sidebarNavItems}
-        toggleCollapsed={() => setIsCollapsed((prev) => !prev)}
-      />
+    <HeaderProvider>
+      <div className="relative flex min-h-svh flex-col">
+        <TopBar />
 
-      <div className="flex flex-1 flex-row">
-        <aside className="fixed top-14 bottom-0 left-0 z-30 hidden h-[calc(100svh-3.5rem)] w-fit shrink-0 overflow-y-auto p-4 md:sticky md:block">
-          <SideNav items={sidebarNavItems} isCollapsed={isCollapsed} />
-        </aside>
-        <main className="flex w-full flex-col overflow-hidden p-4 md:p-6">
-          {children}
-        </main>
+        <div className="flex flex-1 flex-row">
+          <aside className="fixed top-14 bottom-0 left-0 z-30 hidden h-[calc(100svh-3.5rem)] w-fit shrink-0 overflow-y-auto p-4 md:sticky md:block">
+            <SideNav />
+          </aside>
+          <main className="flex w-full flex-col overflow-hidden p-4 md:p-6">
+            {children}
+          </main>
+        </div>
       </div>
-    </div>
+    </HeaderProvider>
   );
 }

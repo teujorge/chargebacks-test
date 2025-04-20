@@ -76,6 +76,10 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.637 0.237 25.331);
+  --font-FILL: 0;
+  --font-wght: 400;
+  --font-GRAD: 0;
+  --font-opsz: 24;
 }
 
 .dark {
@@ -123,6 +127,23 @@
 
 @layer components {
   .text-loading {
-    @apply text-muted bg-muted rounded-lg animate-pulse;
+    @apply text-muted bg-muted animate-pulse rounded-lg;
+  }
+}
+
+@layer utilities {
+  .material-symbols-rounded {
+    font-variation-settings:
+      "FILL" var(--font-FILL),
+      "wght" var(--font-wght),
+      "GRAD" var(--font-GRAD),
+      "opsz" var(--font-opsz);
+
+    transition-property: all;
+    transition-timing-function: var(
+      --tw-ease,
+      var(--default-transition-timing-function)
+    );
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
 }

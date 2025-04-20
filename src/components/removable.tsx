@@ -2,7 +2,6 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
-import { XIcon } from "lucide-react";
 import { useState } from "react";
 
 export function Removable({
@@ -18,8 +17,12 @@ export function Removable({
     setIsClosed(true);
   }
 
+  if (isClosed) {
+    return null;
+  }
+
   return (
-    <div className={cn("relative", isClosed && "hidden", className)}>
+    <div className={cn("relative", className)}>
       {children}
 
       <Button
@@ -27,7 +30,7 @@ export function Removable({
         className="hover:border-primary/14 absolute top-5 right-5 z-20 h-fit w-fit cursor-pointer rounded-full border border-transparent !p-2"
         onClick={handleClose}
       >
-        <XIcon className="min-h-6 min-w-6" />
+        <span className="material-symbols-rounded">close</span>
       </Button>
     </div>
   );

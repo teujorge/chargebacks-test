@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Search, Mic } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -39,15 +38,22 @@ export function TopBarSearch() {
   };
 
   return (
-    <div className="flex w-full max-w-xl items-center">
-      <Search className="relative top-0 left-8 h-4 w-4" />
+    <div className="flex w-full max-w-2xl items-center">
+      <span
+        className="material-symbols-rounded text-muted-foreground relative top-0 left-10"
+        onClick={() => searchInputRef.current?.focus()}
+      >
+        search
+      </span>
+
       <Input
         ref={searchInputRef}
         defaultValue={search}
         placeholder="Filter categories..."
-        className="bg-background rounded-full px-10"
+        className="bg-background h-10 rounded-full px-12 !text-lg"
         onKeyDown={handleEnter}
       />
+
       <TopBarSearchMic onSearch={handleSearch} />
     </div>
   );
@@ -131,10 +137,12 @@ function TopBarSearchMic({ onSearch }: { onSearch: (query: string) => void }) {
       <DialogTrigger asChild>
         <Button
           variant="ghost"
-          className="hover:!bg-primary/14 relative top-0 right-11 h-auto w-auto cursor-pointer rounded-full py-1.5"
+          className="group hover:!bg-primary/14 relative top-0 right-[60px] h-auto w-auto cursor-pointer rounded-full py-1"
           onClick={listen}
         >
-          <Mic className="h-4 w-4" />
+          <span className="material-symbols-rounded group-hover:text-foreground text-muted-foreground group-hover:[--font-FILL:1]">
+            mic
+          </span>
         </Button>
       </DialogTrigger>
 
@@ -163,12 +171,14 @@ function TopBarSearchMic({ onSearch }: { onSearch: (query: string) => void }) {
               onClick={toggleListening}
               variant="ghost"
             >
-              <Mic
+              <span
                 className={cn(
-                  "h-full w-full",
+                  "material-symbols-rounded",
                   isListening && "text-primary animate-ping",
                 )}
-              />
+              >
+                mic
+              </span>
             </Button>
 
             <span className="text-muted-foreground h-3 text-xs">

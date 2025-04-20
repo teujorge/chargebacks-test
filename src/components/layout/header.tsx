@@ -80,7 +80,7 @@ export const sidebarNavItems: SidebarNavItem[] = [
   {
     title: "Collections",
     href: "/collections",
-    icon: "grid_view",
+    icon: "tile_small",
     subItems: [
       {
         title: "My Collections",

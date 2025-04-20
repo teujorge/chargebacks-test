@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
@@ -56,7 +56,7 @@ function NavItem({
 
   const NavItem = (
     <AccordionItem value={item.href} style={{ border: 0 }}>
-      <div className="flex w-full items-center justify-between">
+      <div className="flex w-full items-center justify-between gap-1">
         <Button
           key={`side-nav-item-${item.href}`}
           asChild
@@ -99,12 +99,17 @@ function NavItem({
           <>
             <div className="bg-secondary h-6 w-0.5 rounded-full" />
 
-            <AccordionTrigger className="hover:bg-accent flex cursor-pointer items-center justify-center p-1.5" />
+            <AccordionTrigger
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "[&>span]:text-foreground cursor-pointer",
+              )}
+            />
           </>
         )}
       </div>
 
-      <AccordionContent className="flex max-w-48 flex-col overflow-hidden pt-2 pl-6">
+      <AccordionContent className="text-foreground flex max-w-48 flex-col overflow-hidden pt-2 pl-6">
         {item.subItems?.map((subItem) => {
           const isSubActive = pathname === subItem.href;
 

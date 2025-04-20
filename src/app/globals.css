@@ -146,4 +146,8 @@
     );
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+
+  .unimplemented-page {
+    @apply [&>h1]:font-roboto-condensed my-auto flex flex-col gap-4 text-center [&>h1]:text-4xl [&>h1]:font-bold md:[&>h1]:text-6xl;
+  }
 }

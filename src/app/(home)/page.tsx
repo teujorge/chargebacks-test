@@ -98,7 +98,7 @@ export default function HomePage() {
         <section className="border-home-shorts/35 flex flex-col gap-4 overflow-hidden rounded-xl md:border">
           <div className="flex flex-row justify-between gap-4 pt-6 md:px-6">
             <h2 className="font-roboto-condensed flex items-center gap-2 text-2xl font-bold">
-              <span className="material-symbols-rounded text-foreground font-[--font-FILL:1]">
+              <span className="material-symbols-rounded text-foreground">
                 movie
               </span>
               Shorts
@@ -123,7 +123,6 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
-
           <ScrollFade className="grid grid-cols-2 gap-2 pb-4 sm:grid-cols-3 md:flex md:flex-row md:gap-4 md:overflow-x-auto md:px-6">
             <Suspense
               fallback={

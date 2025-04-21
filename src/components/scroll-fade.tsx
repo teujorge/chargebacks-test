@@ -13,10 +13,12 @@ export function ScrollFade({
   children,
   scrollMoreAmount = 400,
   className,
+  fade,
 }: {
   children: React.ReactNode;
   scrollMoreAmount?: number;
   className?: string;
+  fade?: { className?: string };
 }) {
   const [showLeftFade, setShowLeftFade] = useState<FadeState>({
     show: false,
@@ -37,7 +39,14 @@ export function ScrollFade({
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => handleScroll(), []);
+  useEffect(() => {
+    // on init
+    handleScroll();
+
+    // on resize
+    window.addEventListener("resize", handleScroll);
+    return () => window.removeEventListener("resize", handleScroll);
+  }, []);
 
   function handleScroll() {
     if (!scrollContainerRef.current) return;
@@ -124,6 +133,7 @@ export function ScrollFade({
             show={showLeftFade.show}
             position="left"
             onClickToScroll={scrollMore("left")}
+            {...fade}
           />
         )}
         {showRightFade.render && (
@@ -131,6 +141,7 @@ export function ScrollFade({
             show={showRightFade.show}
             position="right"
             onClickToScroll={scrollMore("right")}
+            {...fade}
           />
         )}
         {showTopFade.render && (
@@ -138,6 +149,7 @@ export function ScrollFade({
             show={showTopFade.show}
             position="top"
             onClickToScroll={scrollMore("top")}
+            {...fade}
           />
         )}
         {showBottomFade.render && (
@@ -145,6 +157,7 @@ export function ScrollFade({
             show={showBottomFade.show}
             position="bottom"
             onClickToScroll={scrollMore("bottom")}
+            {...fade}
           />
         )}
       </div>
@@ -166,16 +179,16 @@ function Fade({
   return (
     <div
       className={cn(
-        "absolute flex items-center justify-center from-[#ffffff] from-0% to-transparent to-50% transition-opacity duration-200 dark:from-[#252222]",
+        "from-background absolute flex min-h-full items-center justify-center from-5% to-transparent to-95% transition-opacity",
         show ? "opacity-100" : "opacity-0",
         position === "top" &&
-          "top-0 h-1/12 max-h-32 min-h-16 w-full bg-gradient-to-b",
+          "top-0 h-1/6 max-h-32 min-h-20 w-full bg-gradient-to-b",
         position === "bottom" &&
-          "bottom-0 h-1/12 max-h-32 min-h-16 w-full bg-gradient-to-t",
+          "bottom-0 h-1/6 max-h-32 min-h-20 w-full bg-gradient-to-t",
         position === "left" &&
-          "left-0 h-full w-1/12 max-w-32 min-w-16 bg-gradient-to-r",
+          "left-0 h-full w-1/6 max-w-32 min-w-20 bg-gradient-to-r",
         position === "right" &&
-          "right-0 h-full w-1/12 max-w-32 min-w-16 bg-gradient-to-l",
+          "right-0 h-full w-1/6 max-w-32 min-w-20 bg-gradient-to-l",
         className,
       )}
     >

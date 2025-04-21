@@ -1,37 +1,58 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
+import React from "react";
 
-export function Removable({
-  children,
-  className,
-}: {
+interface RemovableContextType {
+  isClosed: boolean;
+  setIsClosed: (value: boolean) => void;
+}
+
+const RemovableContext = createContext<RemovableContextType | undefined>(
+  undefined,
+);
+
+function useRemovable() {
+  const context = useContext(RemovableContext);
+  if (!context) {
+    throw new Error("useRemovable must be used within a Removable");
+  }
+  return context;
+}
+
+interface RemovableProps {
   children: React.ReactNode;
   className?: string;
-}) {
-  const [isClosed, setIsClosed] = useState(false);
+}
 
-  function handleClose() {
-    setIsClosed(true);
-  }
+interface RemovableTriggerProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+function Removable({ children, className }: RemovableProps) {
+  const [isClosed, setIsClosed] = useState(false);
 
   if (isClosed) {
     return null;
   }
 
   return (
-    <div className={cn("relative", className)}>
-      {children}
+    <RemovableContext.Provider value={{ isClosed, setIsClosed }}>
+      <div className={cn("relative", className)}>{children}</div>
+    </RemovableContext.Provider>
+  );
+}
 
-      <Button
-        variant="ghost"
-        className="hover:border-primary/14 absolute top-5 right-5 z-20 h-fit w-fit cursor-pointer rounded-full border border-transparent !p-2"
-        onClick={handleClose}
-      >
-        <span className="material-symbols-rounded">close</span>
-      </Button>
+function RemovableTrigger({ children, className }: RemovableTriggerProps) {
+  const { setIsClosed } = useRemovable();
+
+  return (
+    <div className={className} onClick={() => setIsClosed(true)}>
+      {children}
     </div>
   );
 }
+
+export { Removable, RemovableTrigger };

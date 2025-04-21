@@ -1,4 +1,4 @@
-import { Video } from "@/app/(home)/data";
+import type { Video } from "@/types";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { uploadDateToString, viewsToString } from "@/lib/toString";
@@ -6,9 +6,11 @@ import Link from "next/link";
 
 export function VideoCard({
   video,
+  isShort = false,
   className,
 }: {
   video: Video | undefined;
+  isShort?: boolean;
   className?: string;
 }) {
   const viewsString = video ? viewsToString(video.views) : "";
@@ -20,7 +22,7 @@ export function VideoCard({
     <div
       key={`${Math.random()}-${video?.id}`}
       className={cn(
-        "hover:border-primary/50 active:bg-primary/5 h-full flex-1 cursor-pointer overflow-hidden rounded-[17px] border border-transparent shadow-none transition-all duration-300 hover:shadow-lg",
+        "active:bg-primary/5 relative h-full flex-1 cursor-pointer overflow-hidden transition-all duration-300",
         className,
         !video && "pointer-events-none",
       )}
@@ -30,35 +32,50 @@ export function VideoCard({
           <Image
             src={video.thumbnail}
             alt={video.title}
-            className="aspect-video rounded-2xl border object-cover"
+            className={cn(
+              "rounded-2xl border object-cover",
+              isShort ? "aspect-[9/16]" : "aspect-video",
+            )}
             width={800}
             height={450}
           />
         ) : (
-          <div className="aspect-video animate-pulse rounded-lg bg-gray-200 object-cover" />
+          <div
+            className={cn(
+              "bg-muted-foreground animate-pulse rounded-lg object-cover",
+              isShort ? "aspect-[9/16]" : "aspect-video",
+            )}
+          />
         )}
-        {video && (
+        {video && !isShort && (
           <div className="absolute right-2 bottom-2 flex items-center justify-center rounded-[6px] bg-black/60 px-2 py-0.5 text-white backdrop-blur-md">
             <p>{video.duration}</p>
           </div>
         )}
       </div>
-      <div className="flex flex-row gap-2 p-4">
-        {video ? (
-          <Image
-            src={video.authorAvatar}
-            alt={video.author}
-            className="h-10 w-10 rounded-full"
-            width={40}
-            height={40}
-          />
-        ) : (
-          <div className="h-10 min-h-10 w-10 min-w-10 animate-pulse rounded-full bg-gray-200" />
-        )}
-        <div>
+      <div className={cn("flex flex-row gap-2", isShort ? "" : "py-4")}>
+        {!isShort &&
+          (video ? (
+            <Image
+              src={video.authorAvatar}
+              alt={video.author}
+              className="h-10 w-10 rounded-full"
+              width={40}
+              height={40}
+            />
+          ) : (
+            <div className="h-10 min-h-10 w-10 min-w-10 animate-pulse rounded-full bg-gray-200" />
+          ))}
+        <div
+          className={cn(
+            "flex flex-col gap-1 sm:static",
+            isShort &&
+              "from-background absolute right-[1px] bottom-[1px] left-[1px] rounded-b-[15px] bg-gradient-to-t from-0% to-transparent to-95% p-4",
+          )}
+        >
           <h3
             className={cn(
-              "mb-2 line-clamp-2 text-lg font-semibold",
+              "line-clamp-1 text-lg font-semibold sm:line-clamp-2",
               !video && "text-loading",
             )}
           >
@@ -78,6 +95,7 @@ export function VideoCard({
             className={cn(
               "text-muted-foreground text-sm",
               !video && "text-loading",
+              isShort && "hidden sm:block",
             )}
           >
             {viewsString} • {timeAgoString}
@@ -90,9 +108,11 @@ export function VideoCard({
 
 export function VideoCardSkeletons({
   count = 20,
+  isShort = false,
   className,
 }: {
   count?: number;
+  isShort?: boolean;
   className?: string;
 }) {
   const randomKey = Math.random().toString(36).substring(2, 15);
@@ -101,6 +121,7 @@ export function VideoCardSkeletons({
       key={`video-card-skeleton-${randomKey}-${index}`}
       video={undefined}
       className={className}
+      isShort={isShort}
     />
   ));
 }

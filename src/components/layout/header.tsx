@@ -93,6 +93,7 @@ export const sidebarNavItems: SidebarNavItem[] = [
     title: "Subscriptions",
     href: "/subscriptions",
     icon: "subscriptions",
+    divider: true,
     subItems: [
       {
         title: "Chargebacks911",

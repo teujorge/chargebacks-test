@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
@@ -24,8 +24,8 @@ export function SideNav(props: React.HTMLAttributes<HTMLElement>) {
   return (
     <nav
       className={cn(
-        "flex flex-col gap-2",
-        isSideNavCollapsed ? "items-center" : "items-start",
+        "flex flex-col items-start gap-2 transition-all",
+        isSideNavCollapsed ? "w-9" : "w-56",
         props.className,
       )}
       {...props}
@@ -54,50 +54,51 @@ function NavItem({
     pathname.startsWith(subItem.href),
   );
 
-  const NavItem = (
+  const navItemElement = (
     <AccordionItem value={item.href} style={{ border: 0 }}>
       <div className="flex w-full items-center justify-between gap-1">
-        <Button
-          key={`side-nav-item-${item.href}`}
-          asChild
-          variant={isActive ? "default" : "ghost"}
+        <Link
+          href={item.href}
           className={cn(
-            "group flex-1 justify-start !px-3",
+            buttonVariants({
+              variant: isActive ? "default" : "ghost",
+              size: isSmall ? "icon" : "default",
+            }),
+            "group flex-1",
+            !isSmall && "justify-start px-3",
             isActive && "pointer-events-none",
             someSubActive && "bg-accent",
           )}
         >
-          <Link href={item.href}>
-            <span
-              className={cn(
-                "material-symbols-rounded group-hover:[--font-FILL:1]",
-                (isActive || someSubActive) && "[--font-FILL:1]",
-                isSmall ? "mr-0" : "mr-2",
-              )}
-              style={
-                isActive || someSubActive
-                  ? {
-                      background: "linear-gradient(to right, #FF0033, #F50057)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                    }
-                  : undefined
-              }
-            >
-              {item.icon}
-            </span>
-
-            {!isSmall && (
-              <span className="text-foreground text-lg font-medium">
-                {item.title}
-              </span>
+          <span
+            className={cn(
+              "material-symbols-rounded group-hover:[--font-FILL:1]",
+              (isActive || someSubActive) && "[--font-FILL:1]",
+              isSmall ? "mr-0" : "mr-2",
             )}
-          </Link>
-        </Button>
+            style={
+              isActive || someSubActive
+                ? {
+                    background: "linear-gradient(to right, #FF0033, #F50057)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }
+                : undefined
+            }
+          >
+            {item.icon}
+          </span>
+
+          {!isSmall && (
+            <span className="text-foreground text-[1.06rem] font-medium">
+              {item.title}
+            </span>
+          )}
+        </Link>
 
         {item.subItems && (
           <>
-            <div className="bg-secondary h-6 w-0.5 rounded-full" />
+            <div className="bg-secondary h-6 w-[1px] rounded-full" />
 
             <AccordionTrigger
               className={cn(
@@ -109,14 +110,15 @@ function NavItem({
         )}
       </div>
 
-      <AccordionContent className="text-foreground flex max-w-48 flex-col overflow-hidden pt-2 pl-6">
+      <AccordionContent className="text-foreground flex flex-col overflow-hidden pt-2">
         {item.subItems?.map((subItem) => {
           const isSubActive = pathname === subItem.href;
 
           return (
             <Link
               className={cn(
-                "hover:bg-accent/50 flex flex-1 flex-row items-center gap-2 rounded-md p-2",
+                buttonVariants({ variant: "ghost" }),
+                "justify-start text-base",
                 isSubActive && "bg-primary/14 pointer-events-none",
               )}
               key={subItem.href}
@@ -144,7 +146,7 @@ function NavItem({
 
     return (
       <Tooltip key={`side-nav-tooltip-${item.href}`} delayDuration={0}>
-        <TooltipTrigger asChild>{NavItem}</TooltipTrigger>
+        <TooltipTrigger asChild>{navItemElement}</TooltipTrigger>
         <TooltipContent side="right" className="flex items-center">
           {item.title}
         </TooltipContent>
@@ -155,14 +157,14 @@ function NavItem({
   if (item.divider) {
     return (
       <>
-        {NavItem}
+        {navItemElement}
         <div
           key={`side-nav-divider-${item.href}`}
-          className="bg-muted h-0.5 w-full rounded-full"
+          className="bg-muted h-[1px] w-full rounded-full"
         />
       </>
     );
   }
 
-  return NavItem;
+  return navItemElement;
 }

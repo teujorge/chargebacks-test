@@ -41,6 +41,10 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --color-home-missed: var(--home-missed);
+  --color-home-suggestions: var(--home-suggestions);
+  --color-home-shorts: var(--home-shorts);
 }
 
 :root {
@@ -80,6 +84,10 @@
   --font-wght: 400;
   --font-GRAD: 0;
   --font-opsz: 24;
+
+  --home-missed: oklch(0.9 0.0502 243.8);
+  --home-suggestions: oklch(0.7 0.18 298.68);
+  --home-shorts: oklch(0.79 0.1114 250.53);
 }
 
 .dark {

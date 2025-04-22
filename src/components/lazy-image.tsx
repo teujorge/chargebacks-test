@@ -63,6 +63,7 @@ export function LazyImage({
             setIsLoading(false);
             setIsReady(true);
           }}
+          unoptimized // optimized images caused 402 error
         />
       )}
     </div>

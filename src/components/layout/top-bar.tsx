@@ -74,10 +74,10 @@ export function TopBar() {
           </div>
 
           {/* Profile Button */}
-          <Button variant="ghost" size="icon" className="h-9 w-9">
-            <Avatar className="h-7 w-7">
-              <AvatarImage src="" />
-              <AvatarFallback>U</AvatarFallback>
+          <Button variant="ghost" size="icon" className="group h-9 w-9">
+            <Avatar className="h-7 w-7 transition-all duration-300 group-hover:scale-125 group-hover:shadow-lg">
+              <AvatarImage src="https://mjorge.me/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftennis-close.a3b46286.webp&w=2048&q=75" />
+              <AvatarFallback>MJ</AvatarFallback>
             </Avatar>
           </Button>
         </div>

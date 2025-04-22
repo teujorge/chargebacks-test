@@ -18,7 +18,11 @@ interface SpeechRecognitionEvent extends Event {
   error: string;
 }
 
-export function TopBarSearch() {
+export function TopBarSearch({
+  onEnterCallback,
+}: {
+  onEnterCallback?: (query: string) => void;
+}) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const search = searchParams.get("search") ?? "";
@@ -26,7 +30,10 @@ export function TopBarSearch() {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   function handleEnter(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "Enter") handleSearch(searchInputRef.current?.value ?? "");
+    if (e.key === "Enter") {
+      handleSearch(searchInputRef.current?.value ?? "");
+      if (onEnterCallback) onEnterCallback(searchInputRef.current?.value ?? "");
+    }
   }
 
   const handleSearch = (newQuery: string) => {
@@ -34,23 +41,29 @@ export function TopBarSearch() {
     const params = new URLSearchParams(searchParams);
     if (newQuery) params.set("search", newQuery);
     else params.delete("search");
-    router.push(`?${params.toString()}`);
+    router.push(`/?${params.toString()}`);
   };
 
   return (
-    <div className="flex w-full max-w-2xl items-center">
-      <span
-        className="material-symbols-rounded text-muted-foreground relative top-0 left-10"
+    <div className="relative flex h-10 w-full max-w-2xl items-center">
+      <div
+        className="absolute top-0 left-0 flex h-full w-14 items-center justify-center"
         onClick={() => searchInputRef.current?.focus()}
       >
-        search
-      </span>
+        <span className="material-symbols-rounded text-muted-foreground">
+          search
+        </span>
+      </div>
 
       <Input
         ref={searchInputRef}
         defaultValue={search}
         placeholder="Filter categories..."
-        className="!bg-background/75 h-10 rounded-full px-12 !text-lg"
+        className="!bg-background/75 h-10 rounded-full pr-16 pl-12 !text-lg"
+        style={{
+          paddingLeft: "48px",
+          paddingRight: "64px",
+        }}
         onKeyDown={handleEnter}
       />
 
@@ -137,7 +150,7 @@ function TopBarSearchMic({ onSearch }: { onSearch: (query: string) => void }) {
       <DialogTrigger asChild>
         <Button
           variant="ghost"
-          className="group hover:!bg-primary/14 relative top-0 right-[60px] h-auto w-auto cursor-pointer rounded-full py-1"
+          className="group hover:!bg-primary/14 absolute top-2 right-1 h-auto w-auto cursor-pointer rounded-full py-1"
           onClick={listen}
         >
           <span className="material-symbols-rounded group-hover:text-foreground text-muted-foreground group-hover:[--font-FILL:1]">

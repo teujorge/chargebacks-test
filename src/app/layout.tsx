@@ -28,16 +28,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${roboto.variable} ${robotoCondensed.variable} bg-background font-roboto mx-auto min-h-svh max-w-[100rem] antialiased`}
+        className={`${roboto.variable} ${robotoCondensed.variable} bg-background font-roboto flex min-h-svh min-w-svw justify-center antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header>{children}</Header>
-        </ThemeProvider>
+        <div className="w-full max-w-[100rem]">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header>{children}</Header>
+          </ThemeProvider>
+        </div>
       </body>
     </html>
   );

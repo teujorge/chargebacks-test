@@ -1,8 +1,8 @@
 import type { Video } from "@/types";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { uploadDateToString, viewsToString } from "@/lib/toString";
 import Link from "next/link";
+import { LazyImage } from "./lazy-image";
 
 export function VideoCard({
   video,
@@ -28,25 +28,17 @@ export function VideoCard({
       )}
     >
       <div className="relative">
-        {video ? (
-          <Image
-            src={video.thumbnail}
-            alt={video.title}
-            className={cn(
-              "rounded-2xl border object-cover",
-              isShort ? "aspect-[9/16]" : "aspect-video",
-            )}
-            width={800}
-            height={450}
-          />
-        ) : (
-          <div
-            className={cn(
-              "bg-muted-foreground animate-pulse rounded-lg object-cover",
-              isShort ? "aspect-[9/16]" : "aspect-video",
-            )}
-          />
-        )}
+        <LazyImage
+          src={video?.thumbnail}
+          alt={video?.title}
+          width={800}
+          height={450}
+          className={cn(
+            "rounded-2xl object-cover",
+            isShort ? "aspect-[9/16]" : "aspect-video",
+          )}
+        />
+
         {video && !isShort && (
           <div className="absolute right-2 bottom-2 flex items-center justify-center rounded-[6px] bg-black/60 px-2 py-0.5 text-white backdrop-blur-md">
             <p>{video.duration}</p>
@@ -54,18 +46,15 @@ export function VideoCard({
         )}
       </div>
       <div className={cn("flex flex-row gap-2", isShort ? "" : "py-4")}>
-        {!isShort &&
-          (video ? (
-            <Image
-              src={video.authorAvatar}
-              alt={video.author}
-              className="h-10 w-10 rounded-full"
-              width={40}
-              height={40}
-            />
-          ) : (
-            <div className="h-10 min-h-10 w-10 min-w-10 animate-pulse rounded-full bg-gray-200" />
-          ))}
+        {!isShort && (
+          <LazyImage
+            src={video?.authorAvatar}
+            alt={video?.author}
+            className="h-10 w-10 rounded-full"
+            width={40}
+            height={40}
+          />
+        )}
         <div
           className={cn(
             "flex flex-col gap-1 sm:static",

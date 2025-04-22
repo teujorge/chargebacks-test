@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { buttonVariants } from "@/components/ui/button";
 import {
@@ -17,6 +16,7 @@ import {
 } from "../ui/accordion";
 import { useHeader } from "@/providers/HeaderProvider";
 import { sidebarNavItems } from "./header";
+import { LazyImage } from "../lazy-image";
 
 interface SideNavProps extends React.HTMLAttributes<HTMLElement> {
   forceExpandedItems?: boolean;
@@ -135,7 +135,7 @@ function NavItem({
               key={subItem.href}
               href={subItem.href}
             >
-              <Image
+              <LazyImage
                 src={subItem.img}
                 alt={subItem.title}
                 width={16}

@@ -1,6 +1,7 @@
 import { VideoCard, VideoCardSkeletons } from "@/components/video-card";
 import { Suspense } from "react";
 import {
+  getFakeFollowedChannels,
   getFakeMissedVideos,
   getFakeShorts,
   getFakeSuggestedVideos,
@@ -12,12 +13,26 @@ import { sleep } from "@/lib/sleep";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { FilterBar } from "@/components/filter-bar";
+import { ChannelCard, ChannelCardSkeletons } from "@/components/channel-card";
 
 export const dynamic = "force-dynamic";
 
 export default function HomePage() {
   return (
     <>
+      <div className="block pb-4 md:hidden">
+        <ScrollFade
+          className="flex flex-row gap-4 overflow-x-auto"
+          fade={{
+            buttonClassName: "p-0 bg-transparent",
+          }}
+        >
+          <Suspense fallback={<ChannelCardSkeletons />}>
+            <FollowedChannels />
+          </Suspense>
+        </ScrollFade>
+      </div>
+
       <FilterBar />
 
       <div className="space-y-6 pt-2">
@@ -179,5 +194,13 @@ async function ShortsVideos() {
       isShort={true}
       className="h-fit max-w-full md:min-w-56"
     />
+  ));
+}
+
+async function FollowedChannels() {
+  await sleep();
+  const channels = getFakeFollowedChannels();
+  return channels.map((channel) => (
+    <ChannelCard key={channel.id} channel={channel} />
   ));
 }

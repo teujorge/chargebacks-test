@@ -3,6 +3,7 @@
 import { TopBar } from "./top-bar";
 import { SideNav } from "./side-nav";
 import { HeaderProvider } from "@/providers/HeaderProvider";
+import { faker } from "@faker-js/faker";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -67,12 +68,22 @@ export const sidebarNavItems: SidebarNavItem[] = [
       {
         title: "My Playlists",
         href: "/playlists/my-playlists",
-        img: "https://picsum.photos/seed/my-playlists/50",
+        img: faker.image.urlPicsumPhotos({
+          width: 50,
+          height: 50,
+          blur: 0,
+          grayscale: false,
+        }),
       },
       {
         title: "Liked Playlists",
         href: "/playlists/liked-playlists",
-        img: "https://picsum.photos/seed/liked-playlists/50",
+        img: faker.image.urlPicsumPhotos({
+          width: 50,
+          height: 50,
+          blur: 0,
+          grayscale: false,
+        }),
       },
     ],
     divider: true,
@@ -85,7 +96,12 @@ export const sidebarNavItems: SidebarNavItem[] = [
       {
         title: "My Collections",
         href: "/collections/my-collections",
-        img: "https://picsum.photos/seed/my-collections/50",
+        img: faker.image.urlPicsumPhotos({
+          width: 50,
+          height: 50,
+          blur: 0,
+          grayscale: false,
+        }),
       },
     ],
   },
@@ -98,12 +114,22 @@ export const sidebarNavItems: SidebarNavItem[] = [
       {
         title: "Chargebacks911",
         href: "/subscriptions/chargebacks911",
-        img: "https://picsum.photos/seed/chargebacks911/50",
+        img: faker.image.urlPicsumPhotos({
+          width: 50,
+          height: 50,
+          blur: 0,
+          grayscale: false,
+        }),
       },
       {
         title: "fi911",
         href: "/subscriptions/fi911",
-        img: "https://picsum.photos/seed/fi911/50",
+        img: faker.image.urlPicsumPhotos({
+          width: 50,
+          height: 50,
+          blur: 0,
+          grayscale: false,
+        }),
       },
     ],
   },

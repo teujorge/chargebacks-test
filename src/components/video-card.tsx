@@ -1,8 +1,11 @@
+"use client";
+
 import type { Video } from "@/types";
 import { cn } from "@/lib/utils";
 import { uploadDateToString, viewsToString } from "@/lib/toString";
 import Link from "next/link";
 import { LazyImage } from "./lazy-image";
+import { useRouter } from "next/navigation";
 
 export function VideoCard({
   video,
@@ -13,6 +16,8 @@ export function VideoCard({
   isShort?: boolean;
   className?: string;
 }) {
+  const router = useRouter();
+
   const viewsString = video ? viewsToString(video.views) : "";
   const timeAgoString = video
     ? uploadDateToString(new Date(video.uploadDate))
@@ -26,6 +31,7 @@ export function VideoCard({
         className,
         !video && "pointer-events-none",
       )}
+      onClick={() => router.push(`/watch/${video?.id}`)}
     >
       <div className="relative">
         <LazyImage

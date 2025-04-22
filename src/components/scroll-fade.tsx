@@ -18,7 +18,10 @@ export function ScrollFade({
   children: React.ReactNode;
   scrollMoreAmount?: number;
   className?: string;
-  fade?: { className?: string };
+  fade?: {
+    className?: string;
+    buttonClassName?: string;
+  };
 }) {
   const [showLeftFade, setShowLeftFade] = useState<FadeState>({
     show: false,
@@ -43,9 +46,13 @@ export function ScrollFade({
     // on init
     handleScroll();
 
-    // on resize
-    window.addEventListener("resize", handleScroll);
-    return () => window.removeEventListener("resize", handleScroll);
+    // watch for size changes of the scroll container
+    const resizeObserver = new ResizeObserver(handleScroll);
+    if (scrollContainerRef.current) {
+      resizeObserver.observe(scrollContainerRef.current);
+    }
+
+    return () => resizeObserver.disconnect();
   }, []);
 
   function handleScroll() {
@@ -170,46 +177,46 @@ function Fade({
   position,
   onClickToScroll,
   className,
+  buttonClassName,
 }: {
   show: boolean;
   position: "top" | "bottom" | "left" | "right";
   onClickToScroll?: () => void;
   className?: string;
+  buttonClassName?: string;
 }) {
   return (
     <div
       className={cn(
-        "from-background absolute flex min-h-full items-center justify-center from-5% to-transparent to-95% transition-opacity",
-        show ? "opacity-100" : "opacity-0",
+        "from-background absolute flex min-h-full items-center justify-center from-5% to-transparent to-95% p-4 transition-opacity duration-200",
+        show ? "opacity-100" : "pointer-events-none opacity-0",
         position === "top" &&
-          "top-0 h-1/6 max-h-32 min-h-20 w-full bg-gradient-to-b",
+          "top-0 h-1/6 max-h-32 min-h-20 w-full items-start bg-gradient-to-b",
         position === "bottom" &&
-          "bottom-0 h-1/6 max-h-32 min-h-20 w-full bg-gradient-to-t",
+          "bottom-0 h-1/6 max-h-32 min-h-20 w-full items-end bg-gradient-to-t",
         position === "left" &&
-          "left-0 h-full w-1/6 max-w-32 min-w-20 bg-gradient-to-r",
+          "left-0 h-full w-1/6 max-w-32 min-w-20 justify-start bg-gradient-to-r",
         position === "right" &&
-          "right-0 h-full w-1/6 max-w-32 min-w-20 bg-gradient-to-l",
+          "right-0 h-full w-1/6 max-w-32 min-w-20 justify-end bg-gradient-to-l",
         className,
       )}
+      onClick={onClickToScroll}
     >
       {onClickToScroll && (
         <Button
           variant="secondary"
           size="icon"
-          className="hover:border-primary/50 mb-10 h-12 w-12 cursor-pointer rounded-full border-transparent"
+          className={cn(
+            "hover:border-primary/50 h-12 w-12 cursor-pointer rounded-full border-transparent",
+            position === "left" && "rotate-0",
+            position === "right" && "rotate-180",
+            position === "top" && "-rotate-90",
+            position === "bottom" && "rotate-90",
+            buttonClassName,
+          )}
           onClick={onClickToScroll}
         >
-          <span
-            className={cn(
-              "material-symbols-rounded",
-              position === "left" && "rotate-0",
-              position === "right" && "rotate-180",
-              position === "top" && "-rotate-90",
-              position === "bottom" && "rotate-90",
-            )}
-          >
-            chevron_left
-          </span>
+          <span className="material-symbols-rounded">chevron_left</span>
         </Button>
       )}
     </div>

@@ -6,7 +6,12 @@ export const getFakeTrendingVideos = (): Video[] =>
     {
       id: "1",
       title: "10 Tips for Better Sleep",
-      thumbnail: "/images/6-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "12:34",
       views: 12500,
       likes: 850,
@@ -19,7 +24,12 @@ export const getFakeTrendingVideos = (): Video[] =>
     {
       id: "2",
       title: "Quick and Easy Meal Prep Ideas",
-      thumbnail: "/images/15-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "15:20",
       views: 8900,
       likes: 620,
@@ -32,7 +42,12 @@ export const getFakeTrendingVideos = (): Video[] =>
     {
       id: "3",
       title: "Understanding Chargeback Prevention",
-      thumbnail: "/images/25-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "18:45",
       views: 15600,
       likes: 920,
@@ -45,7 +60,12 @@ export const getFakeTrendingVideos = (): Video[] =>
     {
       id: "4",
       title: "Beginner's Guide to Photography",
-      thumbnail: "/images/134-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "20:10",
       views: 21000,
       likes: 1500,
@@ -58,7 +78,12 @@ export const getFakeTrendingVideos = (): Video[] =>
     {
       id: "5",
       title: "Home Workout Routine for Beginners",
-      thumbnail: "/images/141-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "14:30",
       views: 17800,
       likes: 1100,
@@ -71,7 +96,12 @@ export const getFakeTrendingVideos = (): Video[] =>
     {
       id: "6",
       title: "Understanding Payment Processing",
-      thumbnail: "/images/147-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "14:30",
       views: 17800,
       likes: 1100,
@@ -88,7 +118,12 @@ export const getFakeMissedVideos = (): Video[] =>
     {
       id: "m1",
       title: "Advanced Chargeback Analytics",
-      thumbnail: "/images/182-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "16:45",
       views: 8900,
       likes: 450,
@@ -101,7 +136,12 @@ export const getFakeMissedVideos = (): Video[] =>
     {
       id: "m2",
       title: "Fraud Prevention Best Practices",
-      thumbnail: "/images/203-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "14:20",
       views: 7600,
       likes: 380,
@@ -114,7 +154,12 @@ export const getFakeMissedVideos = (): Video[] =>
     {
       id: "m3",
       title: "Payment Gateway Integration Guide",
-      thumbnail: "/images/284-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "18:30",
       views: 10200,
       likes: 520,
@@ -127,7 +172,12 @@ export const getFakeMissedVideos = (): Video[] =>
     {
       id: "m4",
       title: "Understanding PCI Compliance",
-      thumbnail: "/images/288-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "15:45",
       views: 6800,
       likes: 340,
@@ -140,7 +190,12 @@ export const getFakeMissedVideos = (): Video[] =>
     {
       id: "m5",
       title: "E-commerce Payment Solutions",
-      thumbnail: "/images/297-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "17:20",
       views: 9500,
       likes: 480,
@@ -153,7 +208,12 @@ export const getFakeMissedVideos = (): Video[] =>
     {
       id: "m6",
       title: "Risk Management in Payments",
-      thumbnail: "/images/348-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "19:15",
       views: 11200,
       likes: 560,
@@ -170,7 +230,12 @@ export const getFakeSuggestedVideos = (): Video[] =>
     {
       id: "s1",
       title: "Advanced Fraud Detection Systems",
-      thumbnail: "/images/434-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "13:45",
       views: 7800,
       likes: 390,
@@ -183,7 +248,12 @@ export const getFakeSuggestedVideos = (): Video[] =>
     {
       id: "s2",
       title: "Payment Processing Optimization",
-      thumbnail: "/images/526-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "16:20",
       views: 9200,
       likes: 460,
@@ -196,7 +266,12 @@ export const getFakeSuggestedVideos = (): Video[] =>
     {
       id: "s3",
       title: "Merchant Account Security",
-      thumbnail: "/images/1051-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "14:30",
       views: 8500,
       likes: 425,
@@ -209,7 +284,12 @@ export const getFakeSuggestedVideos = (): Video[] =>
     {
       id: "s4",
       title: "Payment Gateway Security",
-      thumbnail: "/images/537-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "15:45",
       views: 8900,
       likes: 445,
@@ -226,7 +306,12 @@ export const getFakeShorts = (): Video[] =>
     {
       id: "sh1",
       title: "Quick Tip: Chargeback Prevention",
-      thumbnail: "/images/609-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "0:59",
       views: 15000,
       likes: 750,
@@ -239,7 +324,12 @@ export const getFakeShorts = (): Video[] =>
     {
       id: "sh2",
       title: "Fraud Detection in 60 Seconds",
-      thumbnail: "/images/625-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "0:58",
       views: 12800,
       likes: 640,
@@ -252,7 +342,12 @@ export const getFakeShorts = (): Video[] =>
     {
       id: "sh3",
       title: "Payment Security Basics",
-      thumbnail: "/images/628-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "0:55",
       views: 14500,
       likes: 725,
@@ -265,7 +360,12 @@ export const getFakeShorts = (): Video[] =>
     {
       id: "sh4",
       title: "Quick Merchant Account Setup",
-      thumbnail: "/images/1071-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "0:57",
       views: 13200,
       likes: 660,
@@ -278,7 +378,12 @@ export const getFakeShorts = (): Video[] =>
     {
       id: "sh5",
       title: "PCI Compliance Checklist",
-      thumbnail: "/images/820-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "0:56",
       views: 11800,
       likes: 590,
@@ -291,7 +396,12 @@ export const getFakeShorts = (): Video[] =>
     {
       id: "sh6",
       title: "Quick Risk Assessment",
-      thumbnail: "/images/845-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "0:58",
       views: 12500,
       likes: 625,
@@ -304,7 +414,12 @@ export const getFakeShorts = (): Video[] =>
     {
       id: "sh7",
       title: "Payment Gateway Setup",
-      thumbnail: "/images/1082-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "0:55",
       views: 14200,
       likes: 710,
@@ -317,7 +432,12 @@ export const getFakeShorts = (): Video[] =>
     {
       id: "sh8",
       title: "Quick Security Audit",
-      thumbnail: "/images/900-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "0:57",
       views: 13500,
       likes: 675,
@@ -330,7 +450,12 @@ export const getFakeShorts = (): Video[] =>
     {
       id: "sh9",
       title: "Fraud Prevention Tips",
-      thumbnail: "/images/912-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "0:56",
       views: 12800,
       likes: 640,
@@ -343,7 +468,12 @@ export const getFakeShorts = (): Video[] =>
     {
       id: "sh10",
       title: "Quick Payment Processing",
-      thumbnail: "/images/1009-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "0:58",
       views: 14000,
       likes: 700,
@@ -356,7 +486,12 @@ export const getFakeShorts = (): Video[] =>
     {
       id: "sh11",
       title: "Merchant Security Tips",
-      thumbnail: "/images/1035-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "0:55",
       views: 12500,
       likes: 625,
@@ -369,7 +504,12 @@ export const getFakeShorts = (): Video[] =>
     {
       id: "sh12",
       title: "Quick Compliance Guide",
-      thumbnail: "/images/1041-600x400.jpg",
+      thumbnail: faker.image.urlPicsumPhotos({
+        width: 600,
+        height: 400,
+        blur: 0,
+        grayscale: false,
+      }),
       duration: "0:57",
       views: 13200,
       likes: 660,

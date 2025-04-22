@@ -3,6 +3,7 @@
 import { TopBar } from "./top-bar";
 import { SideNav } from "./side-nav";
 import { HeaderProvider } from "@/providers/HeaderProvider";
+import { faker } from "@faker-js/faker";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -67,12 +68,22 @@ export const sidebarNavItems: SidebarNavItem[] = [
       {
         title: "My Playlists",
         href: "/playlists/my-playlists",
-        img: "/images/278-50x50.jpg",
+        img: faker.image.urlPicsumPhotos({
+          width: 50,
+          height: 50,
+          blur: 0,
+          grayscale: false,
+        }),
       },
       {
         title: "Liked Playlists",
         href: "/playlists/liked-playlists",
-        img: "/images/406-50x50.jpg",
+        img: faker.image.urlPicsumPhotos({
+          width: 50,
+          height: 50,
+          blur: 0,
+          grayscale: false,
+        }),
       },
     ],
     divider: true,
@@ -85,7 +96,12 @@ export const sidebarNavItems: SidebarNavItem[] = [
       {
         title: "My Collections",
         href: "/collections/my-collections",
-        img: "/images/536-50x50.jpg",
+        img: faker.image.urlPicsumPhotos({
+          width: 50,
+          height: 50,
+          blur: 0,
+          grayscale: false,
+        }),
       },
     ],
   },
@@ -98,12 +114,22 @@ export const sidebarNavItems: SidebarNavItem[] = [
       {
         title: "Chargebacks911",
         href: "/subscriptions/chargebacks911",
-        img: "/images/723-50x50.jpg",
+        img: faker.image.urlPicsumPhotos({
+          width: 50,
+          height: 50,
+          blur: 0,
+          grayscale: false,
+        }),
       },
       {
         title: "fi911",
         href: "/subscriptions/fi911",
-        img: "/images/851-50x50.jpg",
+        img: faker.image.urlPicsumPhotos({
+          width: 50,
+          height: 50,
+          blur: 0,
+          grayscale: false,
+        }),
       },
     ],
   },

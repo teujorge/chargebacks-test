@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { SheetClose, SheetTrigger } from "../ui/sheet";
 import { useHeader } from "@/providers/HeaderProvider";
+import { LazyImage } from "../lazy-image";
 
 interface LogoMenuProps {
   type: "button" | "sheetTrigger" | "sheetClose";
@@ -38,7 +38,7 @@ export function LogoMenu({ type, className, menuClassName }: LogoMenuProps) {
   }
 
   return (
-    <div className={cn("flex items-center gap-2", className)}>
+    <div className={cn("flex items-center gap-2 sm:gap-4", className)}>
       <MenuButton
         size="icon"
         variant="ghost"
@@ -53,12 +53,23 @@ export function LogoMenu({ type, className, menuClassName }: LogoMenuProps) {
       </MenuButton>
 
       <Link href="/" className="flex items-center overflow-hidden rounded">
-        <Image
-          src="/chargebacks911_icon.png"
+        <LazyImage
+          src="/yt_logo_rgb_light.png"
           alt="Icon"
-          height={28}
-          width={28}
+          height={20}
+          width={96}
           priority
+          className="h-5 w-24 opacity-100 dark:opacity-0"
+          wrapperClassName="bg-opacity-0"
+        />
+        <LazyImage
+          src="/yt_logo_rgb_dark.png"
+          alt="Icon"
+          height={20}
+          width={96}
+          priority
+          className="absolute h-5 w-24 opacity-0 dark:opacity-100"
+          wrapperClassName="bg-opacity-0"
         />
       </Link>
     </div>

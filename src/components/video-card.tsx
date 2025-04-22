@@ -65,7 +65,7 @@ export function VideoCard({
           className={cn(
             "flex flex-col gap-1 sm:static",
             isShort &&
-              "from-background absolute right-[1px] bottom-[1px] left-[1px] rounded-b-[15px] bg-gradient-to-t from-0% to-transparent to-95% p-4",
+              "from-background absolute right-0 bottom-0 left-0 rounded-b-[15px] bg-gradient-to-t from-0% to-transparent to-95% p-4",
           )}
         >
           <h3

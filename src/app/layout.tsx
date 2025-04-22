@@ -4,6 +4,7 @@ import "./globals.css";
 import "material-symbols/rounded.css";
 import { ThemeProvider } from "next-themes";
 import { Header } from "@/components/layout/header";
+import { BottomTab } from "@/components/layout/bottom-tab";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -38,6 +39,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Header>{children}</Header>
+            <BottomTab />
           </ThemeProvider>
         </div>
       </body>

@@ -150,7 +150,7 @@ function TopBarSearchMic({ onSearch }: { onSearch: (query: string) => void }) {
       <DialogTrigger asChild>
         <Button
           variant="ghost"
-          className="group hover:!bg-primary/14 absolute top-2 right-1 h-auto w-auto cursor-pointer rounded-full py-1"
+          className="group hover:!bg-primary/14 absolute top-1 right-1 h-auto w-auto cursor-pointer rounded-full py-1"
           onClick={listen}
         >
           <span className="material-symbols-rounded group-hover:text-foreground text-muted-foreground group-hover:[--font-FILL:1]">

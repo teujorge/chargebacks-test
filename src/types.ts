@@ -11,3 +11,9 @@ export interface Video {
   tags: string[];
   uploadDate: string;
 }
+
+export interface Channel {
+  id: string;
+  name: string;
+  avatar: string;
+}

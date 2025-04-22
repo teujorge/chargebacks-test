@@ -1,4 +1,4 @@
-import { Video } from "@/types";
+import { Channel, Video } from "@/types";
 
 export const getFakeTrendingVideos = (): Video[] =>
   [
@@ -379,3 +379,58 @@ export const getFakeShorts = (): Video[] =>
       uploadDate: "2024-03-04",
     },
   ].sort(() => Math.random() - 0.5);
+
+export const getFakeFollowedChannels = (): Channel[] => [
+  {
+    id: "c1",
+    name: "Juxtapposed",
+    avatar:
+      "https://yt3.googleusercontent.com/4jpdODYSW1c4q03iKQ1hNEjzP_EtxvMurwcBeoSVtl8AStSBmQEnE13W1BA6GPIBsdDsxYmvZQo=s160-c-k-c0x00ffffff-no-rj",
+  },
+  {
+    id: "c2",
+    name: "Auto Focus",
+    avatar:
+      "https://yt3.googleusercontent.com/hUes3DegxJOavHd_NNUcI4-1jAGDlqPjPqxJzfr27t5SZ3KnLtgbVF0VfK2FtVlldTtI-YEIWA=s160-c-k-c0x00ffffff-no-rj",
+  },
+  {
+    id: "c3",
+    name: "Fortnite",
+    avatar: `https://picsum.photos/seed/${Math.random()}/75`,
+  },
+  {
+    id: "c4",
+    name: "Marquez Brownlee",
+    avatar: `https://picsum.photos/seed/${Math.random()}/75`,
+  },
+  {
+    id: "c5",
+    name: "Dave2D",
+    avatar:
+      "https://yt3.googleusercontent.com/ytc/AIdro_lltZkOAE5XVIlI8U5QVXmdASgYyJiJps-LkO-uQnTwLMQ=s160-c-k-c0x00ffffff-no-rj",
+  },
+  {
+    id: "c6",
+    name: "Linus Tech Tips",
+    avatar:
+      "https://yt3.googleusercontent.com/gnvYLhXy8FAlPXZ2RTrkrgj-5kyt0vdE2FUGVOiKGdEZIa-wN5A-7nwZBlWJLzUMmoh1NWAU=s160-c-k-c0x00ffffff-no-rj",
+  },
+  {
+    id: "c7",
+    name: "The Game Theorists",
+    avatar:
+      "https://yt3.googleusercontent.com/TZM99pMTtrvq1VJSC3Y83iaGTOgJi1d6gJV2bzqWoKNApQC5EP_vTzlilGyhVy-bQmGY97e4=s160-c-k-c0x00ffffff-no-rj",
+  },
+  {
+    id: "c8",
+    name: "Fireship",
+    avatar:
+      "https://yt3.googleusercontent.com/ytc/AIdro_mKzklyPPhghBJQH5H3HpZ108YcE618DBRLAvRUD1AjKNw=s160-c-k-c0x00ffffff-no-rj",
+  },
+  {
+    id: "c9",
+    name: "Blacktail Studio",
+    avatar:
+      "https://yt3.googleusercontent.com/ytc/AIdro_nfMDBCXeTAtZBXz4kx4hpD_Pm66dk3meC1GzBOcJS8j_8=s160-c-k-c0x00ffffff-no-rj",
+  },
+];

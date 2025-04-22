@@ -81,7 +81,7 @@ export default function HomePage() {
                   <span>Not interested</span>
                 </RemovableTrigger>
 
-                <Button className="group text-foreground bg-home-suggestions/35 hover:bg-home-suggestions/50 rounded-full">
+                <Button className="group text-foreground !bg-home-suggestions/35 hover:!bg-home-suggestions/25 rounded-full">
                   <span className="material-symbols-rounded text-foreground group-hover:[--font-FILL:1]">
                     thumb_up
                   </span>
@@ -121,7 +121,7 @@ export default function HomePage() {
                   <span className="hidden md:block">Not interested</span>
                 </RemovableTrigger>
 
-                <Button className="group text-foreground bg-home-shorts/35 hover:bg-home-shorts/50 rounded-full">
+                <Button className="group text-foreground !bg-home-shorts/35 hover:!bg-home-shorts/25 rounded-full">
                   <span className="material-symbols-rounded group-hover:[--font-FILL:1]">
                     thumb_up
                   </span>

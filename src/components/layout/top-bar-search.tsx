@@ -58,7 +58,7 @@ export function TopBarSearch({
       <Input
         ref={searchInputRef}
         defaultValue={search}
-        placeholder="Filter categories..."
+        placeholder="Search"
         className="!bg-background/75 h-10 rounded-full pr-16 pl-12 !text-lg"
         style={{
           paddingLeft: "48px",

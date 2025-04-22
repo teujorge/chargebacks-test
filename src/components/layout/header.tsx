@@ -101,9 +101,9 @@ export const sidebarNavItems: SidebarNavItem[] = [
         img: "https://picsum.photos/seed/chargebacks911/50",
       },
       {
-        title: "f911",
-        href: "/subscriptions/f911",
-        img: "https://picsum.photos/seed/f911/50",
+        title: "fi911",
+        href: "/subscriptions/fi911",
+        img: "https://picsum.photos/seed/fi911/50",
       },
     ],
   },

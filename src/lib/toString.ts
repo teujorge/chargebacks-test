@@ -12,34 +12,41 @@ export function uploadDateToString(date: Date) {
     timeAgoInYears > 2
       ? `${Math.round(timeAgoInYears)} years ago`
       : timeAgoInMonths > 2
-      ? `${Math.round(timeAgoInMonths)} months ago`
-      : timeAgoInDays > 2
-      ? `${Math.round(timeAgoInDays)} days ago`
-      : timeAgoInHours > 2
-      ? `${Math.round(timeAgoInHours)} hours ago`
-      : timeAgoInMinutes > 2
-      ? `${Math.round(timeAgoInMinutes)} minutes ago`
-      : timeAgoInSeconds > 2
-      ? `${Math.round(timeAgoInSeconds)} seconds ago`
-      : "just now";
+        ? `${Math.round(timeAgoInMonths)} months ago`
+        : timeAgoInDays > 2
+          ? `${Math.round(timeAgoInDays)} days ago`
+          : timeAgoInHours > 2
+            ? `${Math.round(timeAgoInHours)} hours ago`
+            : timeAgoInMinutes > 2
+              ? `${Math.round(timeAgoInMinutes)} minutes ago`
+              : timeAgoInSeconds > 2
+                ? `${Math.round(timeAgoInSeconds)} seconds ago`
+                : "just now";
 
   return timeAgoString;
 }
 
 export function viewsToString(views: number) {
-  let formattedViews = views.toString();
+  let formattedNumber = views.toString();
+  let formattedSuffix = " views";
 
-  if (views > 1000000) {
-    formattedViews = `${(views / 1000000).toFixed(1)}M views`;
+  if (views >= 1000000) {
+    const millions = views / 1000000;
+    formattedNumber = `${millions >= 100 ? Math.round(millions) : millions.toPrecision(3)}`;
+    formattedSuffix = "M views";
+  } else if (views >= 1000) {
+    const thousands = views / 1000;
+    formattedNumber = `${thousands >= 100 ? Math.round(thousands) : thousands.toPrecision(3)}`;
+    formattedSuffix = "K views";
   }
 
-  if (views > 1000) {
-    formattedViews = `${(views / 1000).toFixed(1)}K views`;
+  if (formattedNumber.endsWith(".0")) {
+    formattedNumber = formattedNumber.slice(0, -2);
+  } else if (formattedNumber.endsWith(".00")) {
+    formattedNumber = formattedNumber.slice(0, -3);
+  } else if (formattedNumber.includes(".") && formattedNumber.endsWith("0")) {
+    formattedNumber = formattedNumber.slice(0, -1);
   }
 
-  if (formattedViews.endsWith(".0")) {
-    formattedViews = formattedViews.slice(0, -2);
-  }
-
-  return formattedViews;
+  return `${formattedNumber}${formattedSuffix}`;
 }

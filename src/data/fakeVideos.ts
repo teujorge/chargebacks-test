@@ -400,8 +400,9 @@ export const getFakeFollowedChannels = (): Channel[] => [
   },
   {
     id: "c4",
-    name: "Marquez Brownlee",
-    avatar: `https://picsum.photos/seed/${Math.random()}/75`,
+    name: "Marques Brownlee",
+    avatar:
+      "https://yt3.googleusercontent.com/PEwQfVuhh5jO7_NDDufCq349q0W6MgZeYlgeMyW3OSRMxMx9W5yre5Fgbi4Bql56L1cPwoteOA=s160-c-k-c0x00ffffff-no-rj",
   },
   {
     id: "c5",

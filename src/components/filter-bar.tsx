@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   Dialog,
+  DialogBody,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -144,12 +145,12 @@ export function FilterBar() {
           </Button>
         </DialogTrigger>
 
-        <DialogContent className="min-w-1/2 gap-0 p-0">
-          <DialogHeader className="border-border border-b p-6">
+        <DialogContent className="min-w-1/2">
+          <DialogHeader>
             <DialogTitle>Personalized Feed</DialogTitle>
           </DialogHeader>
 
-          <div className="space-y-6 p-6">
+          <DialogBody>
             <div className="space-y-4">
               <div>
                 <h3 className="pb-2 font-semibold">Your Tags</h3>
@@ -216,7 +217,7 @@ export function FilterBar() {
                 ))}
               </div>
             </div>
-          </div>
+          </DialogBody>
         </DialogContent>
       </Dialog>
 

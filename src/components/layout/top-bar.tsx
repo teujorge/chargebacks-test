@@ -9,8 +9,8 @@ import { TopBarSearch } from "./top-bar-search";
 
 export function TopBar() {
   return (
-    <header className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full backdrop-blur">
-      <div className="flex h-14 items-center p-4">
+    <header className="bg-background supports-[backdrop-filter]:bg-background/75 dark:supports-[backdrop-filter]:bg-background/95 sticky top-0 z-50 w-full backdrop-blur-lg">
+      <div className="flex h-14 items-center px-4">
         <div className="flex items-center">
           {/* Mobile Menu Button */}
           <Sheet>

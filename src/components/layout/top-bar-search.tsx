@@ -50,7 +50,7 @@ export function TopBarSearch() {
         ref={searchInputRef}
         defaultValue={search}
         placeholder="Filter categories..."
-        className="bg-background h-10 rounded-full px-12 !text-lg"
+        className="!bg-background/75 h-10 rounded-full px-12 !text-lg"
         onKeyDown={handleEnter}
       />
 

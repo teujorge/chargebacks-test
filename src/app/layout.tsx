@@ -17,8 +17,8 @@ const robotoCondensed = Roboto_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "Chargebacks911 Test",
-  description: "I'm your guy...",
+  title: "Youtube Redesigned",
+  description: "FE Development Challenge",
 };
 
 export default function RootLayout({

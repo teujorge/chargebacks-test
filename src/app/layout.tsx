@@ -31,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} ${robotoCondensed.variable} bg-background font-roboto flex min-h-svh min-w-svw justify-center antialiased`}
       >
-        <div className="w-full max-w-[100rem]">
+        <div className="relative w-full max-w-[100rem]">
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

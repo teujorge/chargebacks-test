@@ -4,6 +4,7 @@ import { ShortsVideos } from "./components/shorts-videos";
 import { SuggestedVideos } from "./components/suggested-videos";
 import { MissedVideos } from "./components/missed-videos";
 import { TrendingVideos } from "./components/trending-videos";
+import { MixedVideos } from "./components/mixed-videos";
 
 export const dynamic = "force-dynamic";
 
@@ -15,9 +16,20 @@ export default function HomePage() {
 
       <div className="space-y-6 md:space-y-8">
         <MissedVideos />
-        <TrendingVideos />
+
+        <div className="hidden md:block">
+          <TrendingVideos />
+        </div>
+
         <SuggestedVideos />
-        <ShortsVideos />
+
+        <div className="hidden md:block">
+          <ShortsVideos />
+        </div>
+
+        <div className="block md:hidden">
+          <MixedVideos />
+        </div>
       </div>
     </div>
   );

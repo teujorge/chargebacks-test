@@ -26,7 +26,10 @@ export function TopBar() {
                 <LogoMenu type="sheetClose" />
               </SheetTitle>
 
-              <SideNav className="overflow-y-auto px-2 pt-0" />
+              <SideNav
+                forceExpandedItems={true}
+                className="overflow-y-auto px-2 pt-0"
+              />
             </SheetContent>
           </Sheet>
 

@@ -41,6 +41,7 @@ export function LogoMenu({ type, className, menuClassName }: LogoMenuProps) {
     <div className={cn("flex items-center gap-2", className)}>
       <MenuButton
         size="icon"
+        variant="ghost"
         className={cn(
           "group hover:bg-secondary flex size-9 min-w-fit cursor-pointer items-center justify-center rounded-md bg-transparent shadow-none",
           menuClassName,
@@ -82,8 +83,7 @@ function MenuIcon({ className, ...props }: React.SVGProps<SVGSVGElement>) {
         className={cn(
           "[transform-origin:center_-680px]",
           "group-hover:[.animate-to-close_&]:translate-y-1/5 group-hover:[.animate-to-close_&]:rotate-45",
-          "group-hover:[.animate-to-open_&]:-translate-y-1/2 group-hover:[.animate-to-open_&]:opacity-0",
-          "[.animate-to-expand_&]:-translate-y-1/2 [.animate-to-expand_&]:opacity-0 group-hover:[.animate-to-expand_&]:translate-y-0 group-hover:[.animate-to-expand_&]:opacity-100",
+          "[.animate-to-expand_&]:-translate-y-1/2 [.animate-to-expand_&]:opacity-0",
         )}
       />
 
@@ -91,16 +91,14 @@ function MenuIcon({ className, ...props }: React.SVGProps<SVGSVGElement>) {
         d="M160-440q-17 0-28.5-11.5T120-480q0-17 11.5-28.5T160-520h640q17 0 28.5 11.5T840-480q0 17-11.5 28.5T800-440H160Z"
         className={cn(
           "group-hover:[.animate-to-close_&]:opacity-0",
-          "group-hover:[.animate-to-open_&]:-translate-y-1/5",
-          "[.animate-to-expand_&]:-translate-y-1/5 group-hover:[.animate-to-expand_&]:-translate-y-0",
+          "[.animate-to-expand_&]:-translate-y-1/5",
         )}
       />
       <path
         d="M160-440q-17 0-28.5-11.5T120-480q0-17 11.5-28.5T160-520h640q17 0 28.5 11.5T840-480q0 17-11.5 28.5T800-440H160Z"
         className={cn(
           "group-hover:[.animate-to-close_&]:opacity-0",
-          "group-hover:[.animate-to-open_&]:translate-y-1/5",
-          "[.animate-to-expand_&]:translate-y-1/5 group-hover:[.animate-to-expand_&]:-translate-y-0",
+          "[.animate-to-expand_&]:translate-y-1/5",
         )}
       />
 
@@ -109,8 +107,7 @@ function MenuIcon({ className, ...props }: React.SVGProps<SVGSVGElement>) {
         className={cn(
           "[transform-origin:center_-280px]",
           "group-hover:[.animate-to-close_&]:-translate-y-1/5 group-hover:[.animate-to-close_&]:-rotate-45",
-          "group-hover:[.animate-to-open_&]:translate-y-1/2 group-hover:[.animate-to-open_&]:opacity-0",
-          "[.animate-to-expand_&]:translate-y-1/2 [.animate-to-expand_&]:opacity-0 group-hover:[.animate-to-expand_&]:-translate-y-0 group-hover:[.animate-to-expand_&]:opacity-100",
+          "[.animate-to-expand_&]:translate-y-1/2 [.animate-to-expand_&]:opacity-0",
         )}
       />
     </svg>

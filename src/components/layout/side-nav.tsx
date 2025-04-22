@@ -18,7 +18,11 @@ import {
 import { useHeader } from "@/providers/HeaderProvider";
 import { sidebarNavItems } from "./header";
 
-export function SideNav(props: React.HTMLAttributes<HTMLElement>) {
+interface SideNavProps extends React.HTMLAttributes<HTMLElement> {
+  forceExpandedItems?: boolean;
+}
+
+export function SideNav(props: SideNavProps) {
   const { isSideNavCollapsed } = useHeader();
 
   return (
@@ -33,7 +37,11 @@ export function SideNav(props: React.HTMLAttributes<HTMLElement>) {
       <Accordion type="multiple">
         <div className="flex flex-col gap-2 p-2">
           {sidebarNavItems.map((item) => (
-            <NavItem key={item.href} item={item} isSmall={isSideNavCollapsed} />
+            <NavItem
+              key={item.href}
+              item={item}
+              forceExpandedItem={props.forceExpandedItems}
+            />
           ))}
         </div>
       </Accordion>
@@ -43,11 +51,14 @@ export function SideNav(props: React.HTMLAttributes<HTMLElement>) {
 
 function NavItem({
   item,
-  isSmall,
+  forceExpandedItem,
 }: {
   item: SidebarNavItem;
-  isSmall: boolean;
+  forceExpandedItem?: boolean;
 }) {
+  const { isSideNavCollapsed } = useHeader();
+  const isSmall = forceExpandedItem ? false : isSideNavCollapsed;
+
   const pathname = usePathname();
   const isActive = pathname === item.href;
   const someSubActive = item.subItems?.some((subItem) =>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "./ui/button";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import {
   Dialog,
   DialogBody,
@@ -18,8 +18,6 @@ import { StorageKeys } from "@/lib/storageKeys";
 import { cn } from "@/lib/utils";
 
 export function FilterBar() {
-  const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const tagsString = searchParams.get("tags");
@@ -68,11 +66,6 @@ export function FilterBar() {
     );
   }, [excludedTags]);
 
-  useEffect(() => {
-    document.body.style.opacity = "";
-    document.body.style.pointerEvents = "";
-  }, [searchParams?.toString(), pathname]);
-
   function addTag(tagType: "include" | "exclude") {
     const tagName = tagType === "include" ? newIncludedTag : newExcludedTag;
 
@@ -102,17 +95,11 @@ export function FilterBar() {
       newSearchParams.set("tags", newTags.join(","));
     }
 
-    document.body.style.opacity = "0.5";
-    document.body.style.pointerEvents = "none";
-
-    router.push(`?${newSearchParams.toString()}`);
+    history.pushState(null, "", `?${newSearchParams.toString()}`);
   }
 
   function clearTags() {
-    document.body.style.opacity = "0.5";
-    document.body.style.pointerEvents = "none";
-
-    router.push("/");
+    history.pushState(null, "", "/");
   }
 
   function deleteTag(index: number, tagType: "include" | "exclude") {

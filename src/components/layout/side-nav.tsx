@@ -114,7 +114,7 @@ function NavItem({
             <AccordionTrigger
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
-                "[&>span]:text-foreground cursor-pointer",
+                "[&>span]:text-foreground cursor-pointer decoration-transparent",
               )}
             />
           </>

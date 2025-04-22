@@ -38,7 +38,7 @@ export function LogoMenu({ type, className, menuClassName }: LogoMenuProps) {
   }
 
   return (
-    <div className={cn("flex items-center gap-2 sm:gap-4", className)}>
+    <div className={cn("flex items-center gap-2 lg:gap-4", className)}>
       <MenuButton
         size="icon"
         variant="ghost"

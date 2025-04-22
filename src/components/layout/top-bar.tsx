@@ -47,24 +47,26 @@ export function TopBar() {
         </div>
 
         {/* Utility Buttons & Profile */}
-        <div className="flex items-center justify-end space-x-2 not-md:flex-1">
+        <div className="flex items-center justify-end gap-2 not-md:flex-1 lg:gap-4">
           {/* Mobile: 2 utility buttons */}
-          <div className="flex items-center space-x-1 md:hidden">
+          <div className="flex items-center gap-2 md:hidden">
             <Button variant="ghost" size="icon" className="group h-9 w-9">
               <span className="material-symbols-rounded group-hover:[--font-FILL:1]">
                 notifications
               </span>
             </Button>
+
             <ModeToggle />
           </div>
 
           {/* Desktop: 3 utility buttons */}
-          <div className="hidden items-center space-x-1 md:flex">
+          <div className="hidden items-center gap-2 md:flex lg:gap-4">
             <Button variant="ghost" size="icon" className="group h-9 w-9">
               <span className="material-symbols-rounded group-hover:[--font-FILL:1]">
                 notifications
               </span>
             </Button>
+
             <Button variant="ghost" size="icon" className="group h-9 w-9">
               <span className="material-symbols-rounded group-hover:[--font-FILL:1]">
                 settings

@@ -119,7 +119,7 @@ export function FilterBar() {
     <ScrollFade
       key={`filter-bar-${includedTags?.length}-${excludedTags?.length}`}
       scrollMoreAmount={200}
-      className="flex w-full items-center gap-3 overflow-x-auto pb-4"
+      className="flex w-full items-center gap-3 overflow-x-auto pb-3"
       fade={{
         className: "p-0",
         buttonClassName: "bg-transparent m-0 shadow-none",

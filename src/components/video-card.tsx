@@ -56,7 +56,7 @@ export function VideoCard({
           <LazyImage
             src={video?.authorAvatar}
             alt={video?.author}
-            className="h-10 w-10 rounded-full"
+            className="max-h-10 min-h-10 max-w-10 min-w-10 rounded-full"
             width={40}
             height={40}
           />
